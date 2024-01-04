@@ -206,7 +206,9 @@ upNextTetrominoes[nextRandom].forEach(index => {
 
 // add functionalities to the start/pause button
 start.addEventListener('click', () => {
-    if (timerId){
+    if (scoreDisplay.innerHTML === 'game over') {
+        restartGame();
+    }else if (timerId){
         clearInterval(timerId)
         timerId = null
     }else{
@@ -247,7 +249,38 @@ function gameOver(){
     if(current.some(index => squares[currentPosition + index].classList.contains('taken'))){
         scoreDisplay.innerHTML = 'game over'
         clearInterval(timerId)
+        start.textContent = 'Restart'
     }
+}
+
+function restartGame() {
+    // Réinitialiser le score
+    score = 0;
+    scoreDisplay.innerHTML = score;
+
+    // Effacer la grille
+    squares.forEach(square => {
+        square.classList.remove('tetromino', 'taken');
+    });
+
+    // Réinitialiser les positions et les rotations des Tetrominos
+    currentPosition = 4;
+    currentRotation = 0;
+    random = Math.floor(Math.random() * theTetrominoes.length);
+    current = theTetrominoes[random][currentRotation];
+
+    // Redémarrer le timer
+    if(timerId) {
+        clearInterval(timerId);
+    }
+    timerId = setInterval(moveDown, 500);
+
+    // Préparer le prochain Tetromino
+    nextRandom = Math.floor(Math.random() * theTetrominoes.length);
+    displayShape();
+
+    // Remettre le bouton en mode 'Start'
+    start.textContent = 'Start';
 }
 
 })
