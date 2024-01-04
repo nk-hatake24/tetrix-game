@@ -44,6 +44,9 @@ body{
 /* tetris(second page) */
 .tetris{
     position: relative;
+    overflow: hidden;
+    /* position: fixed;
+    bottom: 0px; */
 }
 /* signiature */
 .signature{

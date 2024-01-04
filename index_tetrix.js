@@ -12,15 +12,18 @@ document.addEventListener('DOMContentLoaded', () =>{
     let timerId
     let score = 0
 
-    // anchor function
-    // anchor.addEventListener("click", ()=>{
-    //     tetris.scrollIntoView();
-    // })
+
     if (anchor.length > 0 && tetris.length > 0) {
         anchor[0].addEventListener("click", () => {
             tetris[0].scrollIntoView({ behavior: 'smooth' });
         });
     }
+
+    document.addEventListener('keydown', function(event) {
+        if (event.keyCode === 38) { // 38 est le code de la touche 'haut'
+            event.preventDefault(); // Empêche le défilement
+        }
+    });
 
     const lowSpeed = document.querySelector('.lowSpeed') 
     //the testominos
@@ -161,7 +164,9 @@ function moveRight(){
     draw()
 }
 
+
 //rotate the testromino
+
 function rotate(){
     undraw()
     currentRotation++
