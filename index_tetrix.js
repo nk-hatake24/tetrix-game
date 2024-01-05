@@ -98,18 +98,20 @@ function undraw() {
 
 // assignes keycodes
 function control(e){
-    if(e.keyCode === 37){
-        moveLeft()
-    }else if(e.keyCode === 38){
-        rotate()
+    if (!gameOver() && start.textContent !== "Resume") {
+        
+        if(e.keyCode === 37){
+            moveLeft()
+        }else if(e.keyCode === 38){
+            rotate()
+        }
+        else if(e.keyCode === 39){
+            moveRight()
+        }
+        else if(e.keyCode === 40){
+            moveDown()
+        }
     }
-    else if(e.keyCode === 39){
-        moveRight()
-     }
-    else if(e.keyCode === 40){
-        moveDown()
-    }
-    
 }
 document.addEventListener('keyup', control)
 
@@ -206,14 +208,16 @@ upNextTetrominoes[nextRandom].forEach(index => {
 
 // add functionalities to the start/pause button
 start.addEventListener('click', () => {
-    if (timerId){
+    if (timerId && !gameOver()){
         clearInterval(timerId)
         timerId = null
+        start.textContent = "Resume" // Change the text to "Resume"
     }else{
         draw()
         timerId = setInterval(moveDown, 500)
         nextRandom = Math.floor(Math.random() * theTetrominoes.length)
         displayShape()
+        start.textContent = "Pause" // Change the text back to "Start"
     }
 })
 
@@ -247,6 +251,10 @@ function gameOver(){
     if(current.some(index => squares[currentPosition + index].classList.contains('taken'))){
         scoreDisplay.innerHTML = 'game over'
         clearInterval(timerId)
+
+        return true
+    } else {
+        return false
     }
 }
 
