@@ -1,23 +1,34 @@
 document.addEventListener('DOMContentLoaded', () =>{
     // first page
-    const anchor = document.getElementsByClassName('anchor')
-    const tetris = document.getElementsByClassName('tetris')
+    const anchor = document.querySelector('.anchor')
+    const tetris = document.querySelector('.tetris')
     // second page tetris
     const grid = document.querySelector('.grid')
     let squares = Array.from(document.querySelectorAll('.grid div'))
     const width = 10
     const scoreDisplay = document.querySelector('#score')
     const start = document.querySelector('#start-button')
+    const lowSpeed = document.querySelector('#lowSpeed') 
+    const normal = document.querySelector('#normal') 
+    const highSpeed = document.querySelector('#highSpeed') 
+    const choiceLevel = document.querySelector('.choiceLevel') 
+    const up = document.querySelector(".up")
+    const down = document.querySelector(".down")
+    const left = document.querySelector(".left")
+    const right = document.querySelector(".right")
+
+    var verify = 0//to verify de speed
+
     let nextRandom = 0
     let timerId
     let score = 0
 
 
-    if (anchor.length > 0 && tetris.length > 0) {
-        anchor[0].addEventListener("click", () => {
-            tetris[0].scrollIntoView({ behavior: 'smooth' });
+   
+        anchor.addEventListener("click", () => {
+            choiceLevel.scrollIntoView({ behavior: 'smooth' });
         });
-    }
+    
 
     document.addEventListener('keydown', function(event) {
         if (event.keyCode === 38) { // 38 est le code de la touche 'haut'
@@ -25,7 +36,6 @@ document.addEventListener('DOMContentLoaded', () =>{
         }
     });
 
-    const lowSpeed = document.querySelector('.lowSpeed') 
     //the testominos
     // const lTestominos = [
     //     [1, width+1, width*2+1,2],
@@ -92,9 +102,7 @@ function undraw() {
     }) 
 }
 
-// make tetrominoes draw ward
-// vartimerId = setInterval(moveDown, 200)
-// // vartmer2id = setInterval(moveLeft, 1000)
+
 
 // assignes keycodes
 function control(e){
@@ -111,6 +119,15 @@ function control(e){
     }
     
 }
+
+
+// button to rotate
+up.addEventListener('click', rotate)
+down.addEventListener('click', moveDown)
+right.addEventListener('click',  moveRight)
+left.addEventListener('click', moveLeft)
+
+
 document.addEventListener('keyup', control)
 
 //move down function
@@ -204,6 +221,37 @@ upNextTetrominoes[nextRandom].forEach(index => {
 })
 }
 
+
+// low speed button
+
+    lowSpeed.addEventListener('click', ()=> {
+        verify = 1
+        tetris.scrollIntoView({ behavior: 'smooth' });
+
+})
+
+
+// normal speed
+
+    normal.addEventListener('click', ()=> {
+        verify = 2
+    tetris.scrollIntoView({ behavior: 'smooth' });
+
+        
+})
+
+
+// high speed
+
+    highSpeed.addEventListener('click', ()=> {
+        verify = 3
+        tetris.scrollIntoView({ behavior: 'smooth' });
+
+        
+})
+
+
+
 // add functionalities to the start/pause button
 start.addEventListener('click', () => {
     if (scoreDisplay.innerHTML === 'game over') {
@@ -213,16 +261,22 @@ start.addEventListener('click', () => {
         timerId = null
     }else{
         draw()
-        timerId = setInterval(moveDown, 500)
+        // timerId = setInterval(moveDown, 500)
+        if(verify === 1){
+            timerId = setInterval(moveDown, 600)
+        }else if(verify === 2){
+            timerId = setInterval(moveDown, 300)
+        }else if(verify === 3){
+            timerId = setInterval(moveDown, 100)
+        }else{
+            timerId = setInterval(moveDown, 500)
+        }
         nextRandom = Math.floor(Math.random() * theTetrominoes.length)
         displayShape()
     }
 })
 
-// low speed button
-lowSpeed.addEventListener('click', ()=> {
-    timerId = setInterval(moveDown, 2000)
-})
+
 
 // add score
 function addScore(){
@@ -253,6 +307,7 @@ function gameOver(){
     }
 }
 
+// restartGame
 function restartGame() {
     // Réinitialiser le score
     score = 0;
@@ -273,15 +328,16 @@ function restartGame() {
     if(timerId) {
         clearInterval(timerId);
     }
-    timerId = setInterval(moveDown, 500);
+    choiceLevel.scrollIntoView({ behavior: 'smooth' });
+    // timerId = setInterval(moveDown, 500);
 
-    // Préparer le prochain Tetromino
-    nextRandom = Math.floor(Math.random() * theTetrominoes.length);
-    displayShape();
+    // // Préparer le prochain Tetromino
+    // nextRandom = Math.floor(Math.random() * theTetrominoes.length);
+    // displayShape();
 
     // Remettre le bouton en mode 'Start'
-    start.textContent = 'Start';
+    start.textContent = 'start/pause';
 }
 
 })
-//third rotation of t testomino and second rotation of the l testomino
+
