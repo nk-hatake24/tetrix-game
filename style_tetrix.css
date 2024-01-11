@@ -8,6 +8,7 @@ body{
     background:radial-gradient(rgba(35,180,20,0.5), rgba(24,65,100,0.8));
     background-repeat: no-repeat;
     background-size: 100% 150%;
+    overflow: hidden;
 }
 /* first page "home" */
 
@@ -79,9 +80,10 @@ body{
 /* tetris(last page) */
 .tetris{
     position: relative;
+    height: 100vh;
+    padding-top: 40px;
     overflow: hidden;
-    /* position: fixed;
-    bottom: 0px; */
+
 }
 /* signiature */
 .signature{
@@ -185,17 +187,19 @@ body{
     flex-direction: row;
     justify-content: center;
     gap: 10px;
-    margin-top: 5px;
+    margin-top: 100px;
+    visibility: hidden;
 }
 
 .up,.down,.left,.right{
     font-weight: 700;
+    font-size: 30px;
     text-align: center;
     background:linear-gradient(30deg,rgba(35,90,20,0.6), rgba(23,67,101,0.8));
     border: none;
     color: rgba(250, 250,250,0.6);
     width: 80px;
-    height: 30px;
+    height: 50px;
     cursor: pointer;
 }
 
@@ -207,4 +211,19 @@ body{
     transform: rotate(90deg);
     display: block;
 
+}
+@media (max-width: 680px) {
+    .btnRotate{
+        visibility: visible;
+    }
+    body{
+        overflow: hidden;
+    }
+    .mi{
+        font-size: 20px;
+    }
+    .signature{
+        font-size: 12px;
+        bottom: 30px;
+    }
 }
