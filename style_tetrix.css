@@ -8,7 +8,7 @@ body{
     background:radial-gradient(rgba(35,180,20,0.5), rgba(24,65,100,0.8));
     background-repeat: no-repeat;
     background-size: 100% 150%;
-    /* overflow: hidden; */
+    overflow: hidden;
 }
 /* first page "home" */
 
@@ -217,7 +217,7 @@ body{
         visibility: visible;
     }
     body{
-        /* overflow: hidden; */
+        overflow: hidden;
     }
     .mi{
         font-size: 20px;
