@@ -359,7 +359,7 @@ function restartGame() {
         timerId = null
     }
     choiceLevel.scrollIntoView({ behavior: 'smooth' });
-    // timerId = setInterval(moveDown, 500);
+    // timerId = setIiiuonterval(moveDown, 500);
 
     // // Préparer le prochain Tetromino
     nextRandom = Math.floor(Math.random() * theTetrominoes.length);
