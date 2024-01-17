@@ -224,6 +224,7 @@ body{
         font-size: 20px;
     }
     .signature{
+        position: absolute;
         font-size: 12px;
         bottom: 100px;
     }
@@ -236,6 +237,8 @@ body{
         stroke-width: 1px;
         width: 200px;
     }
+
+    
     .t1{
         transform: translateX(120px);
     }
@@ -253,5 +256,9 @@ body{
     }
     .s{
         transform: translateX(-80px);
+    }
+
+    #score{
+        font-size: 11px;
     }
 }
