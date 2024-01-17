@@ -46,10 +46,10 @@ document.addEventListener('DOMContentLoaded', () =>{
     // ]
 
     const lTetrominos = [
-        [1, width+1, width*2+1, 2], // Rotation 1
-        [width, width+1, width+2, width*2+2], // Rotation 2
-        [1, width+1, width*2+1, width*2], // Rotation 3
-        [width, width+1, width+2, width*2] // Rotation 4
+        [1, width + 1, width * 2 + 1, width * 2],
+        [width, width + 1, width + 2, width * 2 + 2],
+        [1, width + 1, width * 2 + 1, 2],
+        [width, width * 2, width * 2 + 1, width * 2 + 2],
     ]
 
     const ztetromino = [
@@ -366,10 +366,11 @@ function restartGame() {
     displayShape();
     last.forEach(index => index.classList.add('taken'));
     
-    
-    
-    
 }
+
+
+document.querySelector('#home').scrollIntoView({ behavior: 'smooth', block: 'start' });
+
 
 })
 
