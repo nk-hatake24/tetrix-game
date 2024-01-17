@@ -369,8 +369,9 @@ function restartGame() {
 }
 
 
-document.querySelector('#home').scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-
+window.onload = function() {
+    document.getElementById('home').scrollIntoView({ behavior: 'smooth' });
+};
 })
 
