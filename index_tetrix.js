@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () =>{
     const down = document.querySelector(".down")
     const left = document.querySelector(".left")
     const right = document.querySelector(".right")
+    const btnRotate = document.querySelector(".btnRotate")
 
     var verify = 0//to verify de speed
 
@@ -250,7 +251,7 @@ upNextTetrominoes[nextRandom].forEach(index => {
 
     lowSpeed.addEventListener('click', ()=> {
         verify = 1
-        tetris.scrollIntoView({ behavior: 'smooth' });
+        btnRotate.scrollIntoView({ behavior: 'smooth' });
 
 })
 
@@ -259,7 +260,7 @@ upNextTetrominoes[nextRandom].forEach(index => {
 
     normal.addEventListener('click', ()=> {
         verify = 2
-    tetris.scrollIntoView({ behavior: 'smooth' });
+    btnRotate.scrollIntoView({ behavior: 'smooth' });
 
         
 })
@@ -269,7 +270,7 @@ upNextTetrominoes[nextRandom].forEach(index => {
 
     highSpeed.addEventListener('click', ()=> {
         verify = 3
-        tetris.scrollIntoView({ behavior: 'smooth' });
+        btnRotate.scrollIntoView({ behavior: 'smooth' });
 
         
 })
