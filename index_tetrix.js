@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () =>{
     // second page tetris
     const grid = document.querySelector('.grid')
     let squares = Array.from(document.querySelectorAll('.grid div'))
+    const last = Array.from(document.querySelectorAll('#last'))
     const width = 10
     const scoreDisplay = document.querySelector('#score')
     const start = document.querySelector('#start-button')
@@ -139,20 +140,43 @@ function moveDown() {
 }
 
 // freeze function
-function freeze(){
-    if(current.some(index => squares[currentPosition + index + width].classList.contains('taken'))){
-        current.forEach(index => squares[currentPosition + index].classList.add('taken'))
-        // start a new tetromino faliing
-        random = nextRandom
-        nextRandom = Math.floor(Math.random() * theTetrominoes.length)
-        current = theTetrominoes[random][currentRotation]
-        currentPosition = 4
-        draw()
-        displayShape()
-        addScore()
-        gameOver()
-        }
+
+
+function freeze() {
+    // Vérifier la collision avec le bas de la grille ou un tétraminos existant
+    if (current.some(index => squares[currentPosition + index + width].classList.contains('taken'))) {
+        // Ajouter la classe 'taken' aux carrés du tétraminos actuel
+        current.forEach(index => squares[currentPosition + index].classList.add('taken'));
+
+        // Redémarrer le tétraminos et gérer le prochain
+        startNewTetromino();
+    }
 }
+
+function startNewTetromino() {
+    // Sélectionner un nouveau tétraminos aléatoire
+    random = nextRandom;
+    nextRandom = Math.floor(Math.random() * theTetrominoes.length);
+    current = theTetrominoes[random][currentRotation];
+
+    // Réinitialiser la position horizontale du tétraminos
+    currentPosition = 4;
+
+    // Dessiner la grille avec le nouveau tétraminos
+    draw();
+
+    // Afficher le prochain tétraminos
+    displayShape();
+
+    // Ajouter la logique pour ajouter des points, vérifier le game over, etc.
+    addScore();
+    gameOver();
+}
+
+
+
+
+
 
 // move the tetromino left
 function moveLeft(){
@@ -253,6 +277,7 @@ upNextTetrominoes[nextRandom].forEach(index => {
 
 
 // add functionalities to the start/pause button
+const starter = () =>{
 start.addEventListener('click', () => {
     if (scoreDisplay.innerHTML === 'game over') {
         restartGame();
@@ -275,7 +300,8 @@ start.addEventListener('click', () => {
         displayShape()
     }
 })
-
+}
+starter()
 
 
 // add score
@@ -311,6 +337,7 @@ function gameOver(){
 function restartGame() {
     // Réinitialiser le score
     score = 0;
+    start.textContent = 'start/pause';
     scoreDisplay.innerHTML = score;
 
     // Effacer la grille
@@ -318,25 +345,30 @@ function restartGame() {
         square.classList.remove('tetromino', 'taken');
     });
 
+
     // Réinitialiser les positions et les rotations des Tetrominos
     currentPosition = 4;
     currentRotation = 0;
     random = Math.floor(Math.random() * theTetrominoes.length);
     current = theTetrominoes[random][currentRotation];
+    
 
     // Redémarrer le timer
     if(timerId) {
         clearInterval(timerId);
+        timerId = null
     }
     choiceLevel.scrollIntoView({ behavior: 'smooth' });
     // timerId = setInterval(moveDown, 500);
 
     // // Préparer le prochain Tetromino
-    // nextRandom = Math.floor(Math.random() * theTetrominoes.length);
-    // displayShape();
-
-    // Remettre le bouton en mode 'Start'
-    start.textContent = 'start/pause';
+    nextRandom = Math.floor(Math.random() * theTetrominoes.length);
+    displayShape();
+    last.forEach(index => index.classList.add('taken'));
+    
+    
+    
+    
 }
 
 })
