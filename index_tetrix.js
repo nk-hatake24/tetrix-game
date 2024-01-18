@@ -18,6 +18,11 @@ document.addEventListener('DOMContentLoaded', () =>{
     const left = document.querySelector(".left")
     const right = document.querySelector(".right")
     const btnRotate = document.querySelector(".btnRotate")
+    const ghoul = document.querySelector("#ghoul")
+    const gerenge = document.querySelector("#gerenge")
+    const myAudio = document.querySelector("#myAudio")
+    const launch = document.querySelector("#launch")
+    
 
     var verify = 0//to verify de speed
 
@@ -29,6 +34,7 @@ document.addEventListener('DOMContentLoaded', () =>{
    
         anchor.addEventListener("click", () => {
             choiceLevel.scrollIntoView({ behavior: 'smooth' });
+            launch.play()
         });
     
 
@@ -280,6 +286,7 @@ upNextTetrominoes[nextRandom].forEach(index => {
 // add functionalities to the start/pause button
 const starter = () =>{
 start.addEventListener('click', () => {
+    launch.pause()
     if (scoreDisplay.innerHTML === 'game over') {
         restartGame();
     }else if (timerId){
@@ -290,10 +297,13 @@ start.addEventListener('click', () => {
         // timerId = setInterval(moveDown, 500)
         if(verify === 1){
             timerId = setInterval(moveDown, 600)
+            ghoul.play()
         }else if(verify === 2){
             timerId = setInterval(moveDown, 300)
+            gerenge.play()
         }else if(verify === 3){
             timerId = setInterval(moveDown, 100)
+            myAudio.play()
         }else{
             timerId = setInterval(moveDown, 500)
         }
@@ -331,11 +341,26 @@ function gameOver(){
         scoreDisplay.innerHTML = 'game over'
         clearInterval(timerId)
         start.textContent = 'Restart'
+        stopAudio()
+    }
+}
+
+
+const stopAudio = () =>{
+    if( verify === 1 ){
+        ghoul.pause()
+    } else if( verify === 2){
+        gerenge.pause()
+    } else if( verify === 3 ){
+        myAudio.pause()
+    }else{
+        launch.play()
     }
 }
 
 // restartGame
 function restartGame() {
+    
     // Réinitialiser le score
     score = 0;
     start.textContent = 'start/pause';
