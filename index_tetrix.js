@@ -342,6 +342,7 @@ function gameOver(){
         clearInterval(timerId)
         start.textContent = 'Restart'
         stopAudio()
+        launch.play()
     }
 }
 
@@ -353,8 +354,6 @@ const stopAudio = () =>{
         gerenge.pause()
     } else if( verify === 3 ){
         myAudio.pause()
-    }else{
-        launch.play()
     }
 }
 
@@ -377,6 +376,7 @@ function restartGame() {
     currentRotation = 0;
     random = Math.floor(Math.random() * theTetrominoes.length);
     current = theTetrominoes[random][currentRotation];
+    launch.play()
     
 
     // Redémarrer le timer
