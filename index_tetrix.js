@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () =>{
     const gerenge = document.querySelector("#gerenge")
     const myAudio = document.querySelector("#myAudio")
     const launch = document.querySelector("#launch")
+    const adara = document.querySelector("#adara")
     
 
     var verify = 0//to verify de speed
@@ -330,6 +331,7 @@ function addScore(){
             const squaresRemoved = squares.splice(i, width)
             squares = squaresRemoved.concat(squares)
             squares.forEach(cell => grid.appendChild(cell))
+            adara.play()
         
         }
     }
