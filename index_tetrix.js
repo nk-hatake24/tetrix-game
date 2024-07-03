@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () =>{
     const left = document.querySelector(".left")
     const right = document.querySelector(".right")
     const btnRotate = document.querySelector(".btnRotate")
+    // musics
     const ghoul = document.querySelector("#ghoul")
     const gerenge = document.querySelector("#gerenge")
     const myAudio = document.querySelector("#myAudio")
@@ -339,14 +340,20 @@ function addScore(){
 
 //game over
 function gameOver(){
+    let finalScore
     if(current.some(index => squares[currentPosition + index].classList.contains('taken'))){
+        finalScore = scoreDisplay
         scoreDisplay.innerHTML = 'game over'
         clearInterval(timerId)
         start.textContent = 'Restart'
         stopAudio()
         launch.play()
+        return finalScore
     }
+
 }
+
+console.log(gameOver)
 
 
 const stopAudio = () =>{

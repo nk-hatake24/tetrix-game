@@ -5,20 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <!-- Google Tag Manager -->
-    <script>
-      (function (w, d, s, l, i) {
-        w[l] = w[l] || [];
-        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
-        var f = d.getElementsByTagName(s)[0],
-          j = d.createElement(s),
-          dl = l != "dataLayer" ? "&l=" + l : "";
-        j.async = true;
-        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
-        f.parentNode.insertBefore(j, f);
-      })(window, document, "script", "dataLayer", "GTM-P2D6926N");
-    </script>
+
     <!-- End Google Tag Manager -->
     <script src="index_tetrix.js"></script>
+
     <link rel="stylesheet" href="style_tetrix.css" />
     <title>metris</title>
   </head>
@@ -145,6 +135,19 @@
       <button id="lowSpeed">Easy</button>
       <button id="normal">Normal</button>
       <button id="highSpeed">Difficult</button>
+    </div>
+
+    <div id="scoreTable">
+      <h1 class="scoreHeader">the best score</h1>
+      <form id="myForm">
+        <label for="name">Enter your pseudo</label>
+        <input type="text" id="name" name="name" />
+        <button type="submit">Submit</button>
+      </form>
+      <div id="scoreUsers"></div>
+
+      
+
     </div>
 
     <div class="tetris">
@@ -397,5 +400,7 @@
         <button class="right">></button>
       </div>
     </div>
+    <script src="fetch.js"></script>
+    <script src="postUser.js"></script>
   </body>
 </html>

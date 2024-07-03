@@ -8,7 +8,7 @@ body{
     background:radial-gradient(rgba(35,180,20,0.5), rgba(24,65,100,0.8));
     background-repeat: no-repeat;
     background-size: 100% 150%;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 /* first page "home" */
 
@@ -183,6 +183,25 @@ body{
 }
 .btnRotate{
     visibility: hidden;
+}
+
+/* score tables */
+#scoreTable{
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    align-items: center;
+    flex-direction: column;
+}
+
+.scoreHeader{
+    text-transform: uppercase;
+    padding-bottom: 2em;
+}
+#scoreUsers{
+    min-height: 80vh;
+    min-width: 80vw;
+    border: 1px solid red;
 }
 
 @media screen and (max-width: 720px) {
