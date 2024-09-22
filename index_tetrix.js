@@ -353,7 +353,7 @@ function gameOver(){
 
 }
 
-console.log(gameOver)
+console.log(gameOver())
 
 
 const stopAudio = () =>{
